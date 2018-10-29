@@ -46,7 +46,7 @@ public class PanelPelota extends JPanel{
 							p.paint(p.getGraphics());
 							
 							try {
-								Thread.sleep(3);
+								Thread.sleep(10);
 							}catch (InterruptedException ex) {
 								// TODO: handle exception
 							}
