@@ -50,12 +50,14 @@ class Splash extends JDialog{
 							porcentaje.setText(puntos+porcentajeNumerico+"%");
 							barraProgreso.setValue(porcentajeNumerico);
 						}else {
+							dispose();
+							new Frame();
 							Thread.currentThread().interrupt();
-							System.exit(0);
 						}
 					}
 				} catch (InterruptedException e) {
 					Thread.currentThread().interrupt();
+
 				}
 				
 			}
