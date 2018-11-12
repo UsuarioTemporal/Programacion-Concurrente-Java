@@ -18,6 +18,7 @@ class Splash extends JDialog{
 	private JLabel porcentaje;
 	
 	public Splash() {
+		setUndecorated(true);
 		setLayout(new BorderLayout());
 		lblSplashScreen=new JLabel("Splash Screen");
 		lblSplashScreen.setFont(new Font("Tahoma", Font.PLAIN, 18));
