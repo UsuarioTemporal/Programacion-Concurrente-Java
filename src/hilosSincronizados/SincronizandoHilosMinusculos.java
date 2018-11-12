@@ -5,7 +5,7 @@ public class SincronizandoHilosMinusculos {
 		Thread hilo1=new Thread(new Hilo("Hilo Primero"));
 		Thread hilo2=new Thread(new Hilo("Hilo Segundo"));
 		hilo1.start();
-//		
+//			
 		try {
 			hilo1.join();
 		} catch (InterruptedException e) {
