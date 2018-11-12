@@ -9,7 +9,6 @@ import javax.swing.JProgressBar;
 import cronometro.*;
 public class App {
 	public static void main(String[] args) {
-//		new Frame();
 		new Splash();
 	}
 }
@@ -29,9 +28,10 @@ class Splash extends JDialog{
 		add(barraProgreso,BorderLayout.CENTER);
 		add(porcentaje,BorderLayout.SOUTH);
 		pack();
-		iniciarHilo();
 		setLocationRelativeTo(null);
-		setResizable(false);
+//		setResizable(false);
+		
+		iniciarHilo();
 		setVisible(true);
 	}
 	private void iniciarHilo() {
