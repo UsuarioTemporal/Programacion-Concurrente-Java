@@ -9,7 +9,8 @@ import javax.swing.JProgressBar;
 import cronometro.*;
 public class App {
 	public static void main(String[] args) {
-		new Frame();
+//		new Frame();
+		new Splash();
 	}
 }
 class Splash extends JDialog{
@@ -24,9 +25,41 @@ class Splash extends JDialog{
 		add(lblSplashScreen,BorderLayout.NORTH);
 		barraProgreso=new JProgressBar();
 		porcentaje=new JLabel("0%");
+		porcentaje.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		add(barraProgreso,BorderLayout.CENTER);
 		add(porcentaje,BorderLayout.SOUTH);
 		pack();
+		iniciarHilo();
 		setLocationRelativeTo(null);
+		setResizable(false);
+		setVisible(true);
+	}
+	private void iniciarHilo() {
+		Thread hilo=new Thread(new Runnable() {
+		int porcentajeNumerico=0;
+		String puntos="";
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				try {
+					while(!Thread.currentThread().isInterrupted()) {
+						porcentajeNumerico+=5;
+						puntos+=".";
+						Thread.sleep(100);
+						if(porcentajeNumerico<=100) {
+							porcentaje.setText(puntos+porcentajeNumerico+"%");
+							barraProgreso.setValue(porcentajeNumerico);
+						}else {
+							Thread.currentThread().interrupt();
+							System.exit(0);
+						}
+					}
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+				}
+				
+			}
+		});
+		hilo.start();
 	}
 }
