@@ -46,6 +46,24 @@ public class Banco {
 		
 	}
 	
+	
+	//mejoras con condiciones de bloqueo
+	public  void transf(int cuentaOrigen,int cuentaDestino,double cantidad) {
+		cierre.lock();
+		try {
+			if(cuentas[cuentaOrigen]<cantidad) {
+				return ;
+			}
+			System.out.println(Thread.currentThread().getName()+" ... ");
+			cuentas[cuentaOrigen]-=cantidad;
+			System.out.printf("%10.2f de %d para %d\n",cantidad,cuentaOrigen,cuentaDestino);
+			cuentas[cuentaDestino]+=cantidad;
+			System.out.printf("Saldo total : %10.2f\n",getGastoTotal());
+		}finally {
+			cierre.unlock();
+		}
+		
+	}
 	public double getGastoTotal() {
 		double sumaCuentas = 0;
 		for(double c: cuentas) {
