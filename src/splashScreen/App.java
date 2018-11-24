@@ -46,7 +46,7 @@ class Splash extends JDialog{
 					while(!Thread.currentThread().isInterrupted()) {
 						porcentajeNumerico+=5;
 						puntos+=".";
-						Thread.sleep(100);
+						Thread.sleep(105);
 						if(porcentajeNumerico<=100) {
 							porcentaje.setText(puntos+porcentajeNumerico+"%");
 							barraProgreso.setValue(porcentajeNumerico);
