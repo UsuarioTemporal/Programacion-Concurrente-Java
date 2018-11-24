@@ -10,14 +10,14 @@ public class App {
 				
 				@Override
 				public void run() {
-					while(true) {
-						banco.transf(origen,((int)(Math.random()*100)),Math.random()*2000);
-						try {
-							Thread.sleep(500);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							
+					try {
+						while(true) {
+							banco.transf(origen,((int)(Math.random()*100)),Math.random()*2000);
+								Thread.sleep(500);
 						}
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						
 					}
 					
 				}
