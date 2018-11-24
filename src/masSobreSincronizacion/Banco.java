@@ -1,8 +1,11 @@
 package masSobreSincronizacion;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 public class Banco {
 	private final double[] cuentas;
-	
+	private Lock cierre=new ReentrantLock();
 	public Banco() {
 		cuentas=new double[100];
 		for(int i=0;i<cuentas.length;i++) {
@@ -13,6 +16,7 @@ public class Banco {
 	
 	
 	public synchronized void transferencia(int cuentaOrigen,int cuentaDestino,double cantidad) {
+		
 		if(cuentas[cuentaOrigen]<cantidad) {
 			return ;
 		}
@@ -26,14 +30,19 @@ public class Banco {
 	
 	// look
 	public  void trans(int cuentaOrigen,int cuentaDestino,double cantidad) {
-		if(cuentas[cuentaOrigen]<cantidad) {
-			return ;
+		cierre.lock();
+		try {
+			if(cuentas[cuentaOrigen]<cantidad) {
+				return ;
+			}
+			System.out.println(Thread.currentThread().getName()+" ... ");
+			cuentas[cuentaOrigen]-=cantidad;
+			System.out.printf("%10.2f de %d para %d\n",cantidad,cuentaOrigen,cuentaDestino);
+			cuentas[cuentaDestino]+=cantidad;
+			System.out.printf("Saldo total : %10.2f\n",getGastoTotal());
+		}finally {
+			cierre.unlock();
 		}
-		System.out.println(Thread.currentThread().getName()+" ... ");
-		cuentas[cuentaOrigen]-=cantidad;
-		System.out.printf("%10.2f de %d para %d\n",cantidad,cuentaOrigen,cuentaDestino);
-		cuentas[cuentaDestino]+=cantidad;
-		System.out.printf("Saldo total : %10.2f\n",getGastoTotal());
 		
 	}
 	
