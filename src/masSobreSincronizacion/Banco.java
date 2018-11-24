@@ -5,8 +5,8 @@ public class Banco {
 	
 	public Banco() {
 		cuentas=new double[100];
-		for(double i : cuentas) {
-			i=2000;
+		for(int i=0;i<cuentas.length;i++) {
+			cuentas[i]=2000;
 		}
 		
 	}
@@ -16,11 +16,11 @@ public class Banco {
 		if(cuentas[cuentaOrigen]<cantidad) {
 			return ;
 		}
-		System.out.println(Thread.currentThread()+" ... ");
+		System.out.println(Thread.currentThread().getName()+" ... ");
 		cuentas[cuentaOrigen]-=cantidad;
-		System.out.printf("%10.2f de %d para %d",cantidad,cuentaOrigen,cuentaDestino);
+		System.out.printf("%10.2f de %d para %d\n",cantidad,cuentaOrigen,cuentaDestino);
 		cuentas[cuentaDestino]+=cantidad;
-		System.out.printf("Saldo total : %10.2f/n",getGastoTotal());
+		System.out.printf("Saldo total : %10.2f\n",getGastoTotal());
 		
 	}
 	
