@@ -10,6 +10,14 @@ package metodosSynchronized;
  * */
 public class MetodoSynchronized {
 	public static void main(String[] args) {
+		CajeroAutomatico cajero=new CajeroAutomatico();
+		Thread pepito=new Thread(cajero,"Pepito");
+		Thread thomsito=new Thread(cajero,"thomsito");
+		Thread ronaldito=new Thread(cajero,"Juanito");
 		
+		pepito.start();
+		thomsito.start();
+		ronaldito.start();
 	}
+	
 }
